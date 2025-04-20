@@ -40,7 +40,7 @@ export const config = {
     '/login', // 로그인
     '/register', // 회원가입
     '/profile', // 프로필
-    '/history',         // protected
-    '/stats',         // protected
+    '/history', // 내 기록
+    '/stats', // 내 통계
   ],
 };
