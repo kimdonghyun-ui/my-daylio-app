@@ -7,7 +7,7 @@ import DarkModeToggle from '../DarkModeToggle';
 import { usePathname } from 'next/navigation';
 import { getTitleFromPath } from '@/utils/utils';
 
-import { LogOut, User, History, BarChart } from 'lucide-react';
+import { LogOut, User, History, BarChart, Heart } from 'lucide-react';
 import { IconBtn } from '../ui/IconBtn';
 
 
@@ -57,6 +57,7 @@ export default function Header({ showBackButton = false }: HeaderProps) {
           <DarkModeToggle />
           {accessToken && (
             <>
+              <IconBtn onClick={() => router.push('/')} icon={<Heart />} title="오늘의 기분" />
               <IconBtn onClick={() => router.push('/history')} icon={<History />} title="내 기록" />
               <IconBtn onClick={() => router.push('/stats')} icon={<BarChart />} title="내 통계" />
               <IconBtn onClick={() => router.push('/profile')} icon={<User />} title="프로필" />

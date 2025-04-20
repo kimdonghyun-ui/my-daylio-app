@@ -82,7 +82,7 @@ export default function HistoryPage() {
                     isSelected={true}
                   />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <p className="text-sm text-purple-600 dark:text-purple-400">
                     {format(new Date(mood.attributes.date), 'yyyy년 M월 d일', { locale: ko })}
                   </p>
