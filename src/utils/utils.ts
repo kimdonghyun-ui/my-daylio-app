@@ -96,14 +96,12 @@ export const isProtectedRoute = (
 
   export const getTitleFromPath = (path: string) => {
     const map: Record<string, string> = {
-      '/': '메인',
+      '/': 'My Daylio',
       '/login': '로그인',
       '/profile': 'ME',
       '/register': '회원가입',
-      '/dashboard': '대시보드',
-      '/statistics': '통계',
-      '/transactions': '지출내역',
-      '/transactions/new': '지출추가',
+      '/history': '내 기록',
+      '/stats': '내 통계',
     };
 
     //  '/transactions/[...slug]': '지출 내역 수정', 이 적용이 되지 않기에 아래처럼 함
