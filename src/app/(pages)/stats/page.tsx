@@ -83,7 +83,7 @@ export default function StatsPage() {
   }, {} as Record<number, MoodEmoji>);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
+    <div className="h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
       <main className="container mx-auto px-4 py-8 max-w-2xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
