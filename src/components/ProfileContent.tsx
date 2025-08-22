@@ -21,13 +21,14 @@ export default function ProfileContent() {
 
 
 
+  // 프로필 이미지 변경
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       try {
-        const imageUrl = await uploadImage(event.target.files[0]);
-        setEditedUser(prev => ({ ...prev, profileImage: imageUrl }));
+        const images = await uploadImage(event.target.files[0]);
+        setEditedUser((prev) => ({ ...prev, profileImage: images.url }));
       } catch (error) {
-        console.error("파일 변환 중 오류 발생:", error);
+        console.error('파일 변환 중 오류 발생:', error);
       }
     }
   };
@@ -56,8 +57,9 @@ export default function ProfileContent() {
       profileImage: user?.profileImage || ''
     });
 
-    if ((editedUser.email === 'hello@naver.com') && isEditing) {
-      toast.success('hello@naver.com 계정은 테스트 계정이라 이메일 및 비밀번호 변경이 불가능합니다.');
+
+    if (user?.email === 'hello@naver.com' && isEditing) {
+      toast.success('테스트 계정은 이메일/비번 변경 불가');
     }
 
   }, [isEditing, user]);
