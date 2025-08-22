@@ -1,14 +1,11 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useAuthStore } from '@/store/authStore';
+import { useRouter, usePathname } from 'next/navigation';
 import DarkModeToggle from '../DarkModeToggle';
-import { usePathname } from 'next/navigation';
+import { useAuthStore } from '@/store/authStore';
 import { getTitleFromPath } from '@/utils/utils';
-
-import { LogOut, User, LayoutDashboard } from 'lucide-react';
 import { IconBtn } from '../ui/IconBtn';
-
+import { LogOut, User, History, BarChart, Heart } from 'lucide-react';
 
 
 interface HeaderProps {
@@ -17,25 +14,22 @@ interface HeaderProps {
 }
 
 export default function Header({ showBackButton = false }: HeaderProps) {
+  const router = useRouter();
   const path = usePathname();
-  // 로그인 페이지에서는 헤더를 표시하지 않음
-  // const showHeader = path !== '/login'; 레이아웃 파일로 헤더 노출 구분한게 아니라면 여기다 경로 추가해서 헤더 노출 구분
-  const showHeader = true;
+
+  const accessToken = useAuthStore((state) => state.accessToken);
+  const { performLogout } = useAuthStore();
 
   const title = getTitleFromPath(path);
   
 
-  const router = useRouter();
-  const accessToken = useAuthStore((state) => state.accessToken);
-  const { performLogout } = useAuthStore();
-  
+
+
   const handleLogout = async () => {
     await performLogout();
-    // router.push('/login');
   };
 
   return (
-    showHeader && (
     <header className="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-sm z-50">
       <div className="max-w-4xl mx-auto px-2 sm:px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2 sm:gap-4 min-w-0">
@@ -58,7 +52,9 @@ export default function Header({ showBackButton = false }: HeaderProps) {
           <DarkModeToggle />
           {accessToken && (
             <>
-              <IconBtn onClick={() => router.push('/')} icon={<LayoutDashboard />} title="홈" />
+              <IconBtn onClick={() => router.push('/')} icon={<Heart />} title="오늘의 기분" />
+              <IconBtn onClick={() => router.push('/history')} icon={<History />} title="내 기록" />
+              <IconBtn onClick={() => router.push('/stats')} icon={<BarChart />} title="내 통계" />
               <IconBtn onClick={() => router.push('/profile')} icon={<User />} title="프로필" />
               <IconBtn onClick={handleLogout} icon={<LogOut />} title="로그아웃" />
             </>
@@ -66,6 +62,5 @@ export default function Header({ showBackButton = false }: HeaderProps) {
         </div>
       </div>
     </header>
-    )
   );
-} 
+}

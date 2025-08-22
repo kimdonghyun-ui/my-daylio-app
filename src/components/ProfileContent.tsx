@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { useAuthStore } from '@/store/authStore';
-
 import Image from "next/image";
 import { uploadImage } from '@/utils/uploadImage';
 import { toast } from 'react-hot-toast';
@@ -16,8 +15,11 @@ export default function ProfileContent() {
     password: '',
     profileImage: user?.profileImage || ''
   });
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -54,7 +56,7 @@ export default function ProfileContent() {
       profileImage: user?.profileImage || ''
     });
 
-    if ((user?.email === 'hello@naver.com') && isEditing) {
+    if ((editedUser.email === 'hello@naver.com') && isEditing) {
       toast.success('hello@naver.com 계정은 테스트 계정이라 이메일 및 비밀번호 변경이 불가능합니다.');
     }
 
@@ -62,15 +64,22 @@ export default function ProfileContent() {
 
   return (
 
-    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
+    <div className="h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
       <main className="container mx-auto px-4 py-8 max-w-2xl">
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
           <div className="flex flex-col items-center space-y-6">
             {/* 프로필 이미지 */}
             <div className="relative">
-              <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-blue-500">
+              <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-blue-500 relative">
                 {editedUser.profileImage ? (
-                  <Image src={editedUser.profileImage} alt={editedUser.username} width={128} height={128} className="w-[128px] h-[128px] object-cover rounded-full" />
+                  <Image 
+                    src={editedUser.profileImage} 
+                    alt={editedUser.username}
+                    fill
+                    sizes="120px"
+                    className="object-cover rounded-full"
+                    priority
+                  />
                 ) : (
                   <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
                     <span className="text-4xl text-gray-400">👤</span>

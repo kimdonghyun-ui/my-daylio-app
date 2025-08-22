@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useAuthStore } from '@/store/authStore';
+import { useAuth } from '@/hooks/useAuth';
 import { uploadImage } from "@/utils/uploadImage";
 
 export default function RegisterForm() {
@@ -12,9 +13,9 @@ export default function RegisterForm() {
     password: '', //비밀번호
     passwordConfirm: '', //비밀번호 확인
   });
-  const { isLoading, handleRegister } = useAuthStore();
+  const { isLoading } = useAuthStore();
   const [error, setError] = useState<string | null>(null);
-
+  const { handleRegister } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,12 +48,12 @@ export default function RegisterForm() {
 	};
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
+    <div className="h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
       <div className="max-w-2xl mx-auto px-4 pt-8 pb-8">
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
           <div className="mb-8 text-center">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">새로운 계정 만들기</h2>
-            <p className="text-gray-600 dark:text-gray-400">지출 관리하기 위한 계정을 만들어보세요</p>
+            <p className="text-gray-600 dark:text-gray-400">감정을 관리하기 위한 계정을 만들어보세요</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">

@@ -2,21 +2,19 @@
 
 import { useState, useEffect } from 'react';
 import { useAuthStore } from '@/store/authStore';
-// import { useAuth } from '@/hooks/useAuth';
-// import { handleLogin } from '@/store/authStore';
 
 const loginMessages = [
   {
-    title: '지출도 추억이 된다면',
-    subtitle: '하루하루의 소비를 기록하며, 나만의 재정 이야기를 시작해보세요',
+    title: '기록은 마음의 쉼표',
+    subtitle: '하루의 감정을 조용히 남기며, 나를 이해하는 시간을 가져보세요',
   },
   {
-    title: '지출 관리, 더 쉽게',
-    subtitle: '매일의 수입과 지출을 한눈에. 당신만의 스마트 가계부를 시작하세요',
+    title: '오늘, 어떤 기분이었나요?',
+    subtitle: '감정의 파동을 놓치지 마세요. 작은 마음도 기록할 가치가 있어요',
   },
   {
-    title: '돈의 흐름을 기록하세요',
-    subtitle: '작은 소비도 소중하게. 당신의 일상을 숫자로 담아보세요',
+    title: '나를 알아가는 첫걸음',
+    subtitle: '하루 한 줄, 감정을 적으며 내면의 나와 가까워지세요',
   },
 ]
 
@@ -39,7 +37,7 @@ export default function LoginForm() {
   }, [])
 
   return (
-    <div className="min-h-screen flex items-center bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
       <div className="max-w-2xl mx-auto px-4 pt-8 pb-8">
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
           <div className="mb-8 text-center">
@@ -103,6 +101,12 @@ export default function LoginForm() {
                 회원가입
               </a>
             </div>
+
+            {/* ✅ Heroku 슬립 안내 문구 */}
+            <p className="text-center text-xs text-red-500 mt-2 font-medium">
+              ※ 첫 로그인 시, 백엔드 서버 기동으로 인해 약간의 지연이 발생할 수 있습니다.
+            </p>
+
           </form>
         </div>
       </div>

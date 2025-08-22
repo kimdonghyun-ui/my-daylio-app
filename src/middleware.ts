@@ -34,16 +34,13 @@ export function middleware(request: NextRequest) {
 
 // 미들웨어가 적용될 경로 설정
 export const config = {
-
+  
   matcher: [
     '/',  // 홈(해당 프로젝트에서는 사용안함)
     '/login', // 로그인
     '/register', // 회원가입
     '/profile', // 프로필
-    // '/dashboard', // 대시보드
-    // '/statistics',  // 통계
-    // '/transactions',  // 거래내역
-    //'/transactions/(.*)', // transactions/new 또는 transactions/123/edit 등의 transactions/ 뒤에 뭐가 더붙는 페이지 전부
-    
+    '/history', // 내 기록
+    '/stats', // 내 통계
   ],
 };
